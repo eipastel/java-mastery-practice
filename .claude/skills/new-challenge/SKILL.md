@@ -1,6 +1,6 @@
 ---
 name: new-challenge
-description: Generates a new practical coding challenge (interview-style, not LeetCode) and creates README.md + Challenge.java skeleton in the challenges/ folder.
+description: Generates a new simple, logic-focused coding challenge and creates README.md + Challenge.java skeleton in src/main/java/challenges/.
 argument-hint: normal-challenge
 disable-model-invocation: true
 allowed-tools: Read Write Glob
@@ -8,97 +8,100 @@ allowed-tools: Read Write Glob
 
 ## Goal
 
-Generate a new practical coding challenge — something concrete and fun, like "create a rock-paper-scissors game" or "build a ticket queue system" — and write the files to the `challenges/` folder. Never implement the solution.
+Generate a new simple, self-contained coding challenge — focused on logic and implemented as methods, not as a console application. Write the files to `src/main/java/challenges/`. Never implement the solution.
 
 ## Step 1 — Determine the next challenge number
 
-List all existing directories inside `challenges/` using Glob pattern `challenges/_*/`.
+List all existing directories inside `src/main/java/challenges/` using Glob pattern `src/main/java/challenges/_*/`.
 
 Count how many exist to determine the next sequential number (e.g., if there are 3, the next is `_04`).
 
 ## Step 2 — Invent a challenge
 
-Pick a domain and scenario that is:
-- **Practical and concrete** — something a dev would actually build (game logic, small tools, simulations, queue systems, simple CLIs)
-- **Not LeetCode** — no pure algorithm problems (sorting, graph traversal, DP). Focus on real-world logic.
-- **Interview-appropriate** — completable in 30–90 minutes, tests object modeling and logic
-- **Different from all existing challenges** — read the existing `README.md` files in `challenges/` to avoid repeating domains
+Pick a scenario that is:
+- **Simple and focused** — one clear goal, completable in 15–45 minutes
+- **Logic or math based** — the fun is in figuring out the logic, not in wiring up infrastructure
+- **No console interaction** — no Scanner, no interactive prompts; input comes from method parameters
+- **Not CRUD** — avoid create/read/update/delete over a data store
+- **Different from all existing challenges** — read the existing `README.md` files in `src/main/java/challenges/` to avoid repeating ideas
 
-Good examples: jokenpô, calculadora de gorjeta, sistema de senhas de banco, caixa registradora simples, gerador de senha aleatória, conversor de temperatura, estacionamento simples, placar de tênis, máquina de vending, validador de CPF.
+Good examples: soma de matrizes, triângulo de asteriscos, jokenpô (lógica pura), validador de CPF, calculadora de troco, conversor de temperatura, verificador de palíndromo, gerador de tabuada, placar de tênis, contador de vogais.
 
-Bad examples: binary search, merge sort, Fibonacci (nth), shortest path.
+Bad examples: sistema de cadastro, CRUD de produtos, aplicação com menu interativo no console, busca binária pura.
 
 ## Step 3 — Derive the folder name
 
 From the challenge title, create a lowercase slug with underscores. Examples:
+- "Soma de matrizes" → `soma_de_matrizes`
+- "Triângulo de asteriscos" → `triangulo_de_asteriscos`
 - "Jokenpô simples" → `jokenpo_simples`
-- "Fila de atendimento" → `fila_de_atendimento`
-- "Caixa registradora" → `caixa_registradora`
 
-Full folder path: `challenges/_<NN>_<slug>/` where `<NN>` is the two-digit number from Step 1.
+Full folder path: `src/main/java/challenges/_<NN>_<slug>/` where `<NN>` is the two-digit number from Step 1.
 
 ## Step 4 — Write the README.md
 
-Create `challenges/_<NN>_<slug>/README.md` with this structure:
+Create `src/main/java/challenges/_<NN>_<slug>/README.md` with this structure:
 
 ```markdown
 # <Challenge title>
 
-<1–2 sentences describing the scenario in plain Portuguese. Make it engaging.>
+<1–2 sentences describing what to build, in plain Portuguese. Be direct.>
 
 ## O que implementar
 
-- <Requirement 1 — concrete and specific>
+- <Requirement 1 — what method/logic to write, concrete and specific>
 - <Requirement 2>
-- <Requirement 3>
-- <Requirement 4 if needed>
+- <Requirement 3 if needed>
 
-## Exemplo de uso
+## Exemplo
 
 ```
-<Short example showing expected input → output or interaction>
+<Concrete example: method call → expected return or printed output>
 ```
 
 ## Bônus (opcional)
 
-- <One optional extra that makes it more interesting — not required>
-- <Another bonus if applicable>
+- <One optional extra — not required>
 ```
 
 Rules for the README:
 - Write in Portuguese
-- Requirements should be unambiguous — the user should not have to guess what is expected
-- Do not hint at the implementation approach or data structures to use
-- The example must be concrete (actual values, not pseudocode)
+- Each requirement describes a method or behavior to implement, not a UI flow
+- Do not hint at the implementation approach
+- The example must show actual values, not pseudocode
 
 ## Step 5 — Write the Challenge.java
 
-Create `challenges/_<NN>_<slug>/Challenge.java` with only the minimum boilerplate:
+Create `src/main/java/challenges/_<NN>_<slug>/Challenge.java` with only the minimum boilerplate:
 
 ```java
+package challenges._<NN>_<slug>;
+
 public class Challenge {
 
+    // TODO: implement
+
     public static void main(String[] args) {
-        // TODO: implement
+        // use main to test your implementation with hardcoded values
     }
 }
 ```
 
 Rules:
 - Do NOT implement any logic
-- Do NOT add helper methods, fields, or classes
-- Do NOT add comments explaining the challenge — the README does that
-- The user decides how to structure the code
+- Do NOT add helper methods, fields, or classes beyond the comment placeholders
+- Do NOT add Scanner or any console input
+- The user decides how to structure their solution
 
 ## Step 6 — Confirm
 
 Tell the user:
 
 ```
-Challenge created: challenges/_<NN>_<slug>/
+Challenge created: src/main/java/challenges/_<NN>_<slug>/
 
 Files:
-  README.md    — description and requirements
+  README.md      — description and requirements
   Challenge.java — ready to implement
 
 When done: /review-submission challenges/_<NN>_<slug>
