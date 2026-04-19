@@ -36,7 +36,7 @@ O package Java espelha o path do diretório com underscores: `block1_base._01_me
 
 ## Skills disponíveis
 
-Este repositório tem três skills customizadas que cobrem o ciclo de estudo:
+Este repositório tem quatro skills customizadas que cobrem o ciclo de estudo:
 
 ```
 /generate-challenge <path> [same|harder|easier]
@@ -53,10 +53,24 @@ Analisa a solução do usuário em três dimensões: correção conceitual, corr
 ```
 Tutor socrático: lê o estado atual do exercício e guia com perguntas e dicas mínimas, sem entregar a resposta.
 
-**Formato do path para as skills:** `block1-base/01-memory/01-stack-vs-heap` (com hífens, não underscores).
+```
+/new-challenge normal-challenge
+```
+Gera um desafio prático novo (estilo entrevista, não LeetCode) e cria os arquivos `README.md` + `Challenge.java` em `challenges/`. Nunca implementa a solução.
+
+**Formato do path para as skills de exercício:** `block1-base/01-memory/01-stack-vs-heap` (com hífens, não underscores).
+
+## Challenges
+
+A pasta `challenges/` contém desafios práticos abertos — diferentes dos exercícios conceituais. Cada challenge tem:
+- `README.md` — descrição, requisitos, exemplo e bônus
+- `Challenge.java` — boilerplate mínimo para o usuário preencher
+
+Para fazer review de um challenge: `/review-submission challenges/<nome-do-challenge>`
 
 ## Convenções do repositório
 
 - Os `Exercise.java` com apenas `TODO`s ainda não foram resolvidos — não preencher sem pedido explícito do usuário.
 - Ao gerar variações com `/generate-challenge`, o arquivo original **nunca** deve ser sobrescrito; o código gerado vai para o stdout.
 - Ao fazer review com `/review-submission`, nunca colar uma versão corrigida do código — apenas indicar onde melhorar.
+- O `Challenge.java` em `challenges/` nunca deve ser preenchido pela skill — apenas pelo usuário.
